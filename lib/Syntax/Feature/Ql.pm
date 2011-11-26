@@ -51,15 +51,9 @@ method _run_callback {
 }
 
 method _transform ($class: $name, $ctx) {
-    my $space = do {
-        my $prestr = substr $ctx->get_linestr, $ctx->offset;
-        $prestr =~ m{^\Q$name\E(\s*)}sm
-            or die "Unable to find '$name' declarator";
-        $1;
-    };
     $ctx->skip_declarator;
     my $linestr = $ctx->get_linestr;
-    substr($linestr, $ctx->offset, 0) = ' ' . $QuoteOp{$name} . $space;
+    substr($linestr, $ctx->offset, 0) = ' ' . $QuoteOp{$name};
     $ctx->set_linestr($linestr);
     return 1;
 }
@@ -83,7 +77,7 @@ __END__
 
 This is a syntax extension feature suitable for L<syntax>.
 
-It provides two new quotelike operators named C<ql> and C<qql>. These
+It provides two new quote-like operators named C<ql> and C<qql>. These
 work in the same way as C<q> and C<qq> (including the ability to change
 the delimiters), except they put the returned string on a single line.
 
