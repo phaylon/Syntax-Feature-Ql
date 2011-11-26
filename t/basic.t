@@ -22,7 +22,8 @@ subtest "ql" => sub {
         foo: %d,
         bar: %d
     }, 23, 17), 'foo: 23, bar: 17', 'with sprintf';
-    is ql 2 8 2, q 2 8 2, 'spaced and numerical delimiters';
+    is ql 23832, q 23832,
+        'spaced and numerical delimiters';
     done_testing;
 };
 
