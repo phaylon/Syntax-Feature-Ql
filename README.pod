@@ -23,7 +23,8 @@ version 0.001000
 
 =head1 DESCRIPTION
 
-This is a syntax extension feature suitable for L<syntax>.
+This is a syntax extension feature suitable for the L<syntax> extension
+dispatcher.
 
 It provides two new quote-like operators named C<ql> and C<qql>. These
 work in the same way as C<q> and C<qq> (including the ability to change
