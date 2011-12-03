@@ -52,8 +52,21 @@ method _run_callback {
 
 method _transform ($class: $name, $ctx) {
     $ctx->skip_declarator;
+    my $length = Devel::Declare::toke_scan_str($ctx->offset);
+    my $string = Devel::Declare::get_lex_stuff;
+    Devel::Declare::clear_lex_stuff;
     my $linestr = $ctx->get_linestr;
-    substr($linestr, $ctx->offset, 0) = ' ' . $QuoteOp{$name};
+    my $quoted = substr $linestr, $ctx->offset, $length;
+    my $spaced = '';
+    $quoted =~ m{^(\s*)}sm;
+    $spaced = $1;
+    my $new = sprintf '(%s)', join '',
+        $QuoteOp{$name},
+        $spaced,
+        substr($quoted, length($spaced), 1),
+        $string,
+        substr($quoted, -1, 1);
+    substr($linestr, $ctx->offset, $length) = $new;
     $ctx->set_linestr($linestr);
     return 1;
 }

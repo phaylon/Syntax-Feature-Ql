@@ -24,6 +24,7 @@ subtest "ql" => sub {
     }, 23, 17), 'foo: 23, bar: 17', 'with sprintf';
     is ql 23832, q 23832,
         'spaced and numerical delimiters';
+    is ql[ 2 3 ] . "\n", "2 3\n", 'precedence works out';
     done_testing;
 };
 
@@ -43,6 +44,9 @@ subtest "qql" => sub {
         bar
     !, 'foo bar', 'different quotesigns';
     is_deeply [ 23, \qql/52/, 17 ], [23, \52, 17], 'can be referenced';
+    is qql! foo @{[ map "$_\n", qw( bar baz ) ]} qux !,
+        'foo bar baz qux',
+        'embedded expression';
     done_testing;
 };
 
