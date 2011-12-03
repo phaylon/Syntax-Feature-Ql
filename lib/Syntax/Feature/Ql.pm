@@ -3,9 +3,9 @@ use strictures 1;
 # ABSTRACT: Turns the quoted string into a single line
 
 package Syntax::Feature::Ql;
-use Devel::Declare ();
-use B::Hooks::EndOfScope;
-use Sub::Install            qw( install_sub );
+use Devel::Declare          0.006007    ();
+use B::Hooks::EndOfScope    0.09;
+use Sub::Install            0.925       qw( install_sub );
 
 use aliased 'Devel::Declare::Context::Simple', 'Context';
 
@@ -88,7 +88,8 @@ __END__
 
 =head1 DESCRIPTION
 
-This is a syntax extension feature suitable for L<syntax>.
+This is a syntax extension feature suitable for the L<syntax> extension
+dispatcher.
 
 It provides two new quote-like operators named C<ql> and C<qql>. These
 work in the same way as C<q> and C<qq> (including the ability to change
