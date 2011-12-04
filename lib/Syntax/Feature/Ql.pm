@@ -1,6 +1,6 @@
 use strictures 1;
 
-# ABSTRACT: Turns the quoted string into a single line
+# ABSTRACT: Turns a quoted string into a single line
 
 package Syntax::Feature::Ql;
 use Devel::Declare          0.006007    ();
@@ -72,8 +72,6 @@ method _transform ($class: $name, $ctx) {
 }
 
 1;
-
-__END__
 
 =head1 SYNOPSIS
 
