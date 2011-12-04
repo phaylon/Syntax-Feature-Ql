@@ -1,10 +1,8 @@
-=pod
-
 =encoding utf-8
 
 =head1 NAME
 
-Syntax::Feature::Ql - Turns the quoted string into a single line
+Syntax::Feature::Ql - Turns a quoted string into a single line
 
 =head1 VERSION
 
