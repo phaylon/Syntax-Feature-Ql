@@ -25,6 +25,7 @@ subtest "ql" => sub {
     is ql 23832, q 23832,
         'spaced and numerical delimiters';
     is ql[ 2 3 ] . "\n", "2 3\n", 'precedence works out';
+    is ql " $never @do \this ", q{$never @do \this}, 'bad idea parsing';
     done_testing;
 };
 
@@ -47,6 +48,8 @@ subtest "qql" => sub {
     is qql! foo @{[ map "$_\n", qw( bar baz ) ]} qux !,
         'foo bar baz qux',
         'embedded expression';
+    is qql < foo >, qq <foo>, 'other parenthesis';
+    ok qql(  main  )->can('is'), 'dereference precedence';
     done_testing;
 };
 
